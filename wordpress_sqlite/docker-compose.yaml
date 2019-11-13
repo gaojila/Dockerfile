@@ -1,0 +1,18 @@
+version: "3"
+networks: 
+  mynet:
+
+services:
+  wp:
+    build: .
+    volumes:
+        - /data/wordpress/database:/usr/share/nginx/html/wp-content/database
+        - /data/wordpress/uploads:/usr/share/nginx/html/wp-content/uploads
+        - /data/wordpress/nginx/sites-enabled:/etc/nginx/sites-enabled
+        - /data/wordpress/nginx/ssl:/etc/nginx/ssl
+        - /data/wordpress/nginx/log:/var/log/nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      mynet:
